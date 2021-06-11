@@ -1,3 +1,5 @@
+package views;
+
 import javax.swing.*;
 
 public abstract class Screen extends JFrame {

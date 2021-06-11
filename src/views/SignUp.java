@@ -1,21 +1,33 @@
+package views;
+
+import controllers.UserController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 
 public class SignUp extends Screen {
 
-    JTextField userName = new JTextField(20);
-    JTextField userEmail = new JTextField(20);
-    JPasswordField userPassword = new JPasswordField(20);
-    JComboBox userGender = new JComboBox();
-    JButton btnSingUp = new JButton("Cadastrar");
+    public static void main(String[] args) {
+        SignUp signUpScreen = new SignUp("SingUp", 480, 720, true);
+
+        signUpScreen.btnSingUp.addActionListener(e -> UserController.insertUser(signUpScreen));
+    }
+
+    public JTextField userName = new JTextField(20);
+    public JTextField userEmail = new JTextField(20);
+    public JPasswordField userPassword = new JPasswordField(20);
+    public JComboBox userGender = new JComboBox();
+    public JButton btnSingUp = new JButton("Cadastrar");
+
+
 
     public SignUp(String title, int height, int width, boolean isDefaultVisible) {
         super(title, height, width, isDefaultVisible);
 
-        this.generalConfigs();
         this.headerConfig();
         this.formConfig();
+        this.generalConfigs();
     }
 
     @Override
@@ -23,6 +35,7 @@ public class SignUp extends Screen {
         super.generalConfigs();
 
         this.setLayout(new GridLayout(6, 1));
+        this.setResizable(false);
     }
 
     private void headerConfig() {
