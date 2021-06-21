@@ -12,12 +12,12 @@ import java.util.Arrays;
 public class UserController {
 
     public static void insertUser(SignUp screen) {
-        String nome = screen.userName.getText();
+        String name = screen.userName.getText();
         String email = screen.userEmail.getText();
         String password = String.valueOf(screen.userPassword.getPassword());
         String gender = String.valueOf(screen.userGender.getSelectedItem());
 
-        for (String field : Arrays.asList(nome, email, password)) {
+        for (String field : Arrays.asList(name, email, password)) {
             if(field.equals("")) {
                 JOptionPane.showMessageDialog(screen, "Preencha todos os campos!", "Blank fields", JOptionPane.ERROR_MESSAGE);
                 screen.userName.requestFocus();
@@ -26,7 +26,12 @@ public class UserController {
         }
 
 
-        User user = new User(nome, email, password, gender);
+        User user = new User();
+
+        user.setName(name);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setGender(gender);
 
         CreateConnection connection = new CreateConnection();
         UserDAO userDao = new UserDAO(connection.openConnection());
